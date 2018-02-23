@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<head>
+<meta charset="ISO-8859-1">
+<title>4 Pics 1 Word</title>
+
+</head>
+<style>
+.g-button {
+	width: 96%;
+	background-color: white;
+	-webkit-border-radius: 10px;
+	border-radius: 4px;
+	border: none;
+	color: #0a0a0a;
+	cursor: pointer;
+	display: inline-block;
+	font-family: Arial;
+	font-size: 20px;
+	padding: 6px 10px;
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+input[type='text'] {
+	box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+	background-color: black;
+	width: 6%;
+	border-style: solid;
+	border-color: lightgray;
+	border-width: 1px;
+	padding: 6px 10px;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 14px;
+	color: white;
+	margin: 5% 0% 5% 6%;
+	text-align: center;
+}
+
+.imageTable td {
+	border: 5px solid #5a4d4d;
+}
+
+.imageTable {
+	margin-top: -2%;
+	width: 80%;
+	margin-left: 10%;
+}
+
+.buttonsTable {
+	margin-bottom: 2%;
+	width: 70%;
+	margin-left: 15%;
+}
+
+.results {
+	margin-top: -2%;
+	width: 75%;
+	margin-left: 15%;
+}
+
+.imageAttr {
+	width: 100%;
+	display: block;
+}
+
+.alert-box {
+	color: #555;
+	border-radius: 10px;
+	font-family: Tahoma, Geneva, Arial, sans-serif;
+	font-size: 11px;
+	padding: 15px 10px 10px 36px;
+	margin: 10px;
+}
+
+.alert-box span {
+	font-size: large;
+	font-family: inherit;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.success {
+
+}
+
+.playButton {
+    font-family: inherit;
+    font-weight: bold;
+    text-transform: uppercase;
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	border-radius: 12px;
+	cursor: pointer;
+}
+
+.mainDiv {
+	margin: 0% 0% 2% 17%;
+	float: left;
+	width: 65%;
+	text-align: left;
+	padding-top: 12px;
+	font-size: 13px;
+	font-family: Lucida Grande, Lucida Sans Unicode, Helvetica, Arial,
+		Verdana, sans-serif;
+	clear: both;
+}
+
+.g-button {
+	-webkit-animation: glowing 1500ms infinite;
+	-moz-animation: glowing 1500ms infinite;
+	-o-animation: glowing 1500ms infinite;
+	animation: glowing 1500ms infinite;
+}
+</style>
+
+<script type="text/javascript">
+	var VLogin = angular.module('myapp', []);
+	RESULT = "WATER";
+	VLogin.controller('TestCtrl', [
+			'$scope',
+			function($scope) {
+
+				$scope.clearSearch = function(val) {
+					if ('val1' == val) {
+						this.val1 = "";
+					} else if ('val2' == val) {
+						this.val2 = "";
+					} else if ('val3' == val) {
+						this.val3 = "";
+					} else if ('val4' == val) {
+						this.val4 = "";
+					} else {
+						this.val5 = "";
+					}
+				};
+				$scope.redirect = function() {
+					window.location = "/angularDemo/page2.html";
+				}
+
+				$scope.myFunction = function(val) {
+					var firstValue = $scope.val1;
+					var secondValue = $scope.val2;
+					var thirdValue = $scope.val3;
+					var forthValue = $scope.val4;
+					var fifthValue = $scope.val5;
+					if (!firstValue) {
+						this.val1 = val;
+						firstValue = val;
+					} else if (!secondValue) {
+						this.val2 = val;
+						secondValue = val;
+					} else if (!thirdValue) {
+						this.val3 = val;
+						thirdValue = val;
+					} else if (!forthValue) {
+						this.val4 = val;
+						forthValue = val;
+					} else if (!fifthValue) {
+						this.val5 = val;
+						fifthValue = val;
+					}
+					var finalResult = firstValue + "" + secondValue + ""
+							+ thirdValue + "" + forthValue+""+fifthValue;
+					if (RESULT == finalResult) {
+						var message = "Correct";
+						displayMessage(message, "white", "off");
+					}
+				}
+			} ]);
+	function displayMessage(message, colour, autoClose) {
+		if (message != "") {
+			$("#messageSpan").text(message);
+			$("#messageDiv").css("display", "inline-block");
+			if (colour != undefined && colour != "") {
+				$("#messageDiv").css("background-color", colour);
+			}
+			if (autoClose != undefined && autoClose.toLowerCase() == "on") {
+				$("#messageDiv").show().delay(5000).fadeOut();
+			} else {
+				$("#messageDiv").show();
+			}
+		}
+	}
+
+	function messageDivClose() {
+		$("#messageDiv").hide();
+	}
+</script>
+
+<body ng-app="myapp" style="background-color: black;">
+	<div>
+		<h1
+			style="text-align: center; box-sizing: border-box; font-family: HurmeGeometricSansNo4, sans-serif; background-color: rgb(255, 255, 255); padding-top: 0.5rem; padding-bottom: 0.5rem; color: #18247b; font-size: 1.25rem;">Level
+			1</h1>
+	</div>
+	<div ng-controller="TestCtrl" class="mainDiv" style="">
+		<div>
+				<div id="messageDiv"
+			style="display: none; margin-top: 2% ;position: fixed; height: 30%; min-width: 40%; margin-left: 12%; background-color: black; opacity:0.8; border-radius: 3px; text-align: center; font-weight: bold;">
+			<div class="alert-box success">
+				<span>Correct</span>
+			</div>
+			<div class="alert-box success" style="">
+				<span>You Got It</span>
+			</div>
+			<div>
+				<button class="playButton" ng-click="redirect()">Continue</button>
+			</div>
+		</div>
+			<table class="imageTable">
+				<tr>
+					<td style="height: 150px"><img class="imageAttr"
+						src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuEJmuyYTMO35Xz6zxd15m2-K5Kq7OLESWobuzYSvHXuEJPeBWqA"></td>
+					<td style="height: 150px"><img class="imageAttr"
+						src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpG3z3LfNwTZdVbkciNmzVNdQp72sR9lEuUoh2PSFASV3QLCyrhQ"></td>
+				</tr>
+				<tr>
+					<td style="height: 150px"><img class="imageAttr"
+						src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBQWVWHmH2N7ztfac3GJsJxT6Rgvvg_Lv9GtTnOBUj7GPsoRBljA"></td>
+					<td style="height: 150px"><img class="imageAttr"
+						src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT83VenLvWXawGOFDtRsnm5ozdDOhTiV3fm5E0tDlTCzknG9xcTA"></td>
+				</tr>
+			</table>
+		</div>
+		<div class="results" id="results">
+			<input id="val1" name="val1" ng-model="val1" type="text" readonly>
+			<span><a class="clear" href=""
+				data-ng-click="clearSearch('val1')">X</a></span> </input><input id="val2"
+				name="val2" ng-model="val2" type="text" readonly /> <a
+				class="clear" href="" data-ng-click="clearSearch('val2')">X</a> <input
+				id="val3" name="val3" ng-model="val3" type="text" readonly /> <a
+				class="clear" href="" data-ng-click="clearSearch('val3')">X</a> <input
+				id="val4" name="val4" ng-model="val4" type="text" readonly /> <a
+				class="clear" href="" data-ng-click="clearSearch('val4')">X</a> <input
+				id="val5" name="val5" ng-model="val5" type="text" readonly /> <a
+				class="clear" href="" data-ng-click="clearSearch('val5')">X</a>
+		</div>
+		<div class="">
+			<table class="buttonsTable">
+				<tr>
+					<td><button class="g-button"  ng-click="myFunction('Q')">Q</button></td>
+					<td><button  class="g-button" ng-click="myFunction('R')">R</button></td>
+					<td><button  class="g-button" ng-click="myFunction('S')">S</button></td>
+					<td><button  class="g-button" ng-click="myFunction('B')">B</button></td>
+					<td><button  class="g-button" ng-click="myFunction('F')">F</button></td>
+					<td><button  class="g-button" ng-click="myFunction('J')">J</button></td>
+				</tr>
+				<tr></tr>
+				<tr>
+					<td><button class="g-button" ng-click="myFunction('A')">A</button></td>
+					<td><button class="g-button" ng-click="myFunction('P')">P</button></td>
+					<td><button class="g-button" ng-click="myFunction('T')">T</button></td>
+					<td><button class="g-button" ng-click="myFunction('W')">W</button></td>
+					<td><button class="g-button" ng-click="myFunction('S')">S</button></td>
+					<td><button class="g-button" ng-click="myFunction('E')">E</button></td>
+				</tr>
+				<tr></tr>
+			</table>
+
+		</div>
+	</div>
+
+</body>
+</html>
